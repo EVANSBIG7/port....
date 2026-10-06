@@ -23,7 +23,7 @@
             <span>E</span>VANS.
         </a>
 
-        <nav class="joe-nav-links">
+        <nav class="joe-nav-links" id="joeNavLinks">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="portfolio.html">Portfolio</a>
@@ -37,7 +37,14 @@
             Let's Talk
         </a>
 
-        <button class="joe-menu-button" id="joeMenuButton">
+        <button
+            class="joe-menu-button"
+            id="joeMenuButton"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="joeNavLinks"
+            aria-expanded="false"
+        >
             <i class="fa-solid fa-bars"></i>
         </button>
     </header>
@@ -105,7 +112,7 @@
     </main>
 
 
-    <script src="script.js"></script>
+    <script src="javascript.js"></script>
 
 </body>
 </html>

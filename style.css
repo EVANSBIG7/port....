@@ -296,7 +296,7 @@ body {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
 
     .joe-navbar {
         height: 80px;
@@ -877,7 +877,7 @@ body {
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
 
     .contact-navbar {
         height: 80px;
@@ -1362,7 +1362,7 @@ body {
 
     transition: width 1.8s cubic-bezier(0.25, 1, 0.5, 1);
 
-    box-shadow: 0 0 12px  blue(8, 127, 245, 0.35);
+    box-shadow: 0 0 12px rgba(0, 0, 255, 0.35);
 }
 
 
@@ -1584,7 +1584,7 @@ body {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
 
     .about-navbar {
         height: 80px;
@@ -2459,4 +2459,3 @@ body {
         padding: 35px 25px;
     }
 }
-

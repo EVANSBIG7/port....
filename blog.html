@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | EVANS</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+<body class="evans-blog-page">
+    <header class="evans-blog-navbar">
+        <a href="index.html" class="evans-blog-logo">
+            <span>E</span>VANS.
+        </a>
+
+        <nav class="evans-blog-nav" id="evansBlogNav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="blog.html" class="evans-blog-active" aria-current="page">Blog</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="contact.html" class="evans-blog-talk">Let's Talk</a>
+
+        <button
+            class="evans-blog-menu"
+            id="evansBlogMenu"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-controls="evansBlogNav"
+            aria-expanded="false"
+        >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+    </header>
+
+    <main>
+        <section class="evans-blog-hero">
+            <p class="evans-blog-label">NOTES FROM MY JOURNEY</p>
+            <h1>Learning, building <span>&amp; growing.</span></h1>
+            <p class="evans-blog-intro">
+                Thoughts and lessons from my journey into frontend development,
+                the projects I build, and the skills I'm learning along the way.
+            </p>
+        </section>
+
+        <section class="evans-blog-featured" aria-labelledby="featured-post-title">
+            <div class="evans-blog-featured-visual" aria-hidden="true">
+                <span>FEATURED POST</span>
+                <strong>&lt;/&gt;</strong>
+            </div>
+            <div class="evans-blog-featured-content">
+                <p class="evans-blog-post-category">FRONTEND JOURNEY</p>
+                <h2 id="featured-post-title">How I Started My Journey Into Web Development</h2>
+                <p>
+                    A look at how curiosity led me to HTML and CSS, and how
+                    building projects keeps me learning and improving.
+                </p>
+                <div class="evans-blog-post-meta">
+                    <span>Frontend development</span>
+                    <span aria-hidden="true">•</span>
+                    <span>5 min read</span>
+                </div>
+                <button class="evans-blog-read" type="button" data-blog="journey">
+                    Read article
+                </button>
+            </div>
+        </section>
+
+        <section class="evans-blog-categories" aria-label="Filter articles">
+            <div class="evans-blog-tags">
+                <button class="evans-blog-tag active" type="button">All</button>
+                <button class="evans-blog-tag" type="button">Learning</button>
+                <button class="evans-blog-tag" type="button">Projects</button>
+                <button class="evans-blog-tag" type="button">JavaScript</button>
+            </div>
+        </section>
+
+        <section class="evans-blog-posts" aria-labelledby="blog-posts-title">
+            <div class="evans-blog-section-heading">
+                <h2 id="blog-posts-title">Latest <span>posts.</span></h2>
+            </div>
+            <div class="evans-blog-grid">
+                <article class="evans-blog-card" data-category="learning">
+                    <div class="evans-blog-card-visual" aria-hidden="true">
+                        <span>01</span>
+                        <strong>HTML</strong>
+                    </div>
+                    <div class="evans-blog-card-content">
+                        <p class="evans-blog-card-category">LEARNING</p>
+                        <h3>What Learning HTML Taught Me</h3>
+                        <p>
+                            Understanding the structure behind webpages gave me
+                            the foundation to start making my own.
+                        </p>
+                        <div class="evans-blog-card-footer">
+                            <span>4 min read</span>
+                            <button class="evans-blog-card-link" type="button" data-blog="html">
+                                Read more <span aria-hidden="true">→</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="evans-blog-card" data-category="projects">
+                    <div class="evans-blog-card-visual" aria-hidden="true">
+                        <span>02</span>
+                        <strong>{ }</strong>
+                    </div>
+                    <div class="evans-blog-card-content">
+                        <p class="evans-blog-card-category">PROJECTS</p>
+                        <h3>Building My First Real Website</h3>
+                        <p>
+                            Turning lessons into a working website meant thinking
+                            about layout, responsiveness, and real users.
+                        </p>
+                        <div class="evans-blog-card-footer">
+                            <span>5 min read</span>
+                            <button class="evans-blog-card-link" type="button" data-blog="project">
+                                Read more <span aria-hidden="true">→</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="evans-blog-card" data-category="javascript">
+                    <div class="evans-blog-card-visual" aria-hidden="true">
+                        <span>03</span>
+                        <strong>JS</strong>
+                    </div>
+                    <div class="evans-blog-card-content">
+                        <p class="evans-blog-card-category">JAVASCRIPT</p>
+                        <h3>Why I'm Learning JavaScript</h3>
+                        <p>
+                            Exploring how JavaScript can respond to actions and
+                            make websites feel more interactive.
+                        </p>
+                        <div class="evans-blog-card-footer">
+                            <span>3 min read</span>
+                            <button class="evans-blog-card-link" type="button" data-blog="javascript">
+                                Read more <span aria-hidden="true">→</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="evans-blog-coming">
+            <h2>More ideas are <span>coming.</span></h2>
+            <p>
+                I'm still learning and building. Check back for more notes from
+                my frontend development journey.
+            </p>
+        </section>
+    </main>
+
+    <div
+        class="evans-blog-modal"
+        id="evansBlogModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="evansBlogModalTitle"
+        aria-hidden="true"
+    >
+        <div class="evans-blog-modal-box">
+            <button
+                class="evans-blog-modal-close"
+                id="evansBlogClose"
+                type="button"
+                aria-label="Close article"
+            >&times;</button>
+            <p class="evans-blog-post-category" id="evansBlogModalCategory"></p>
+            <h2 id="evansBlogModalTitle"></h2>
+            <p id="evansBlogModalText"></p>
+        </div>
+    </div>
+
+    <script src="javascript.js"></script>
+</body>
+</html>

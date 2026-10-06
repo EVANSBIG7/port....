@@ -1,179 +1,79 @@
-const joeMenuButton = document.getElementById("joeMenuButton");
-const joeNavLinks = document.querySelector(".joe-nav-links");
-
-joeMenuButton.addEventListener("click", () => {
-    joeNavLinks.classList.toggle("joe-show-menu");
-
-    const menuIcon = joeMenuButton.querySelector("i");
-
-    if (joeNavLinks.classList.contains("joe-show-menu")) {
-        menuIcon.classList.remove("fa-bars");
-        menuIcon.classList.add("fa-xmark");
-    } else {
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
+const mobileMenus = [
+    {
+        button: document.getElementById("joeMenuButton"),
+        navigation: document.querySelector(".joe-nav-links"),
+        openClass: "joe-show-menu"
+    },
+    {
+        button: document.getElementById("contactMenuButton"),
+        navigation: document.getElementById("contactNavLinks"),
+        openClass: "contact-show-menu"
+    },
+    {
+        button: document.getElementById("aboutMenuButton"),
+        navigation: document.getElementById("aboutNavLinks"),
+        openClass: "about-show-menu"
+    },
+    {
+        button: document.getElementById("evansBlogMenu"),
+        navigation: document.querySelector(".evans-blog-nav"),
+        openClass: "evans-blog-mobile-open"
     }
-});
+];
 
-
-
-const joeNavigationItems = document.querySelectorAll(".joe-nav-links a");
-
-joeNavigationItems.forEach((item) => {
-    item.addEventListener("click", () => {
-        joeNavLinks.classList.remove("joe-show-menu");
-
-        const menuIcon = joeMenuButton.querySelector("i");
-
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
-    });
-});
-
-
-
-
-
-
-const contactMenuButton =
-    document.getElementById("contactMenuButton");
-
-const contactNavLinks =
-    document.getElementById("contactNavLinks");
-
-
-contactMenuButton.addEventListener("click", () => {
-
-    contactNavLinks.classList.toggle("contact-show-menu");
-
-    const menuIcon =
-        contactMenuButton.querySelector("i");
-
-    if (
-        contactNavLinks.classList.contains("contact-show-menu")
-    ) {
-
-        menuIcon.classList.remove("fa-bars");
-
-        menuIcon.classList.add("fa-xmark");
-
-    } else {
-
-        menuIcon.classList.remove("fa-xmark");
-
-        menuIcon.classList.add("fa-bars");
-    }
-
-});
-
-
-
-
-const contactNavigationItems =
-    contactNavLinks.querySelectorAll("a");
-
-contactNavigationItems.forEach((item) => {
-
-    item.addEventListener("click", () => {
-
-        contactNavLinks.classList.remove(
-            "contact-show-menu"
-        );
-
-        const menuIcon =
-            contactMenuButton.querySelector("i");
-
-        menuIcon.classList.remove("fa-xmark");
-
-        menuIcon.classList.add("fa-bars");
-
-    });
-
-});
-
-
-
-const contactForm =
-    document.getElementById("contactForm");
-
-const contactFormMessage =
-    document.getElementById("contactFormMessage");
-
-
-contactForm.addEventListener("submit", (event) => {
-
-    event.preventDefault();
-
-    const name =
-        document.getElementById("contactName").value.trim();
-
-    const email =
-        document.getElementById("contactEmail").value.trim();
-
-    const subject =
-        document.getElementById("contactSubject").value.trim();
-
-    const message =
-        document.getElementById("contactMessage").value.trim();
-
-
-    if (!name || !email || !subject || !message) {
-
-        contactFormMessage.textContent =
-            "Please fill in all the fields.";
-
-        contactFormMessage.style.color = "#d93025";
-
+mobileMenus.forEach(({ button, navigation, openClass }) => {
+    if (!button || !navigation) {
         return;
     }
 
+    const menuIcon = button.querySelector("i");
+    const setMenuOpen = (isOpen) => {
+        navigation.classList.toggle(openClass, isOpen);
+        button.setAttribute("aria-expanded", String(isOpen));
+        button.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
 
-    contactFormMessage.textContent =
-        "Thanks! Your message has been prepared successfully.";
+        if (menuIcon) {
+            menuIcon.classList.toggle("fa-bars", !isOpen);
+            menuIcon.classList.toggle("fa-xmark", isOpen);
+        }
+    };
 
-    contactFormMessage.style.color = "#7027e8";
+    button.addEventListener("click", () => {
+        setMenuOpen(!navigation.classList.contains(openClass));
+    });
 
-    contactForm.reset();
-
+    navigation.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
+    });
 });
 
+const contactForm = document.getElementById("contactForm");
+const contactFormMessage = document.getElementById("contactFormMessage");
 
+if (contactForm && contactFormMessage) {
+    contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
+        const name = document.getElementById("contactName").value.trim();
+        const email = document.getElementById("contactEmail").value.trim();
+        const subject = document.getElementById("contactSubject").value.trim();
+        const message = document.getElementById("contactMessage").value.trim();
 
+        if (!name || !email || !subject || !message) {
+            contactFormMessage.textContent = "Please fill in all the fields.";
+            contactFormMessage.style.color = "#d93025";
+            return;
+        }
 
-
-
-
-const aboutMenuButton =
-    document.getElementById("aboutMenuButton");
-
-const aboutNavLinks =
-    document.getElementById("aboutNavLinks");
-
-
-aboutMenuButton.addEventListener("click", () => {
-
-    aboutNavLinks.classList.toggle("about-show-menu");
-
-    const icon =
-        aboutMenuButton.querySelector("i");
-
-    if (
-        aboutNavLinks.classList.contains("about-show-menu")
-    ) {
-
-        icon.classList.remove("fa-bars");
-
-        icon.classList.add("fa-xmark");
-
-    } else {
-
-        icon.classList.remove("fa-xmark");
-
-        icon.classList.add("fa-bars");
-    }
-
-});
+        contactFormMessage.textContent =
+            "Thanks! Your message has been prepared successfully.";
+        contactFormMessage.style.color = "#7027e8";
+        contactForm.reset();
+    });
+}
 
 
 
@@ -260,54 +160,31 @@ function animateAboutSkills() {
 
 
 
-const aboutSkillObserver =
-    new IntersectionObserver(
-        (entries) => {
+if (aboutSkillsSection && "IntersectionObserver" in window) {
+    const aboutSkillObserver =
+        new IntersectionObserver(
+            (entries) => {
 
-            entries.forEach((entry) => {
+                entries.forEach((entry) => {
 
-                if (entry.isIntersecting) {
+                    if (entry.isIntersecting) {
 
-                    animateAboutSkills();
+                        animateAboutSkills();
 
-                    aboutSkillObserver.disconnect();
+                        aboutSkillObserver.disconnect();
 
-                }
+                    }
 
-            });
+                });
 
-        },
-        {
-            threshold: 0.3
-        }
-    );
-
-
-aboutSkillObserver.observe(aboutSkillsSection);
-
-
-
-const aboutNavigationItems =
-    aboutNavLinks.querySelectorAll("a");
-
-aboutNavigationItems.forEach((item) => {
-
-    item.addEventListener("click", () => {
-
-        aboutNavLinks.classList.remove(
-            "about-show-menu"
+            },
+            {
+                threshold: 0.3
+            }
         );
 
-        const icon =
-            aboutMenuButton.querySelector("i");
-
-        icon.classList.remove("fa-xmark");
-
-        icon.classList.add("fa-bars");
-
-    });
-
-});     
+    aboutSkillObserver.observe(aboutSkillsSection);
+}
 
 
 
@@ -340,30 +217,6 @@ aboutNavigationItems.forEach((item) => {
 /* =================================
    EVANS BLOG JAVASCRIPT
 ================================= */
-
-
-/* =================================
-   MOBILE MENU
-================================= */
-
-const evansBlogMenu =
-    document.getElementById("evansBlogMenu");
-
-const evansBlogNav =
-    document.querySelector(".evans-blog-nav");
-
-
-if (evansBlogMenu && evansBlogNav) {
-
-    evansBlogMenu.addEventListener("click", () => {
-
-        evansBlogNav.classList.toggle(
-            "evans-blog-mobile-open"
-        );
-
-    });
-
-}
 
 
 /* =================================
@@ -482,6 +335,15 @@ evansBlogButtons.forEach((button) => {
         if (!article) return;
 
 
+        if (
+            !evansBlogModal ||
+            !evansBlogModalCategory ||
+            !evansBlogModalTitle ||
+            !evansBlogModalText
+        ) {
+            return;
+        }
+
         evansBlogModalCategory.textContent =
             article.category;
 
@@ -491,7 +353,7 @@ evansBlogButtons.forEach((button) => {
         evansBlogModalText.textContent =
             article.text;
 
-
+        evansBlogModal.setAttribute("aria-hidden", "false");
         evansBlogModal.classList.add(
             "show"
         );
@@ -505,7 +367,7 @@ evansBlogButtons.forEach((button) => {
    CLOSE MODAL
 ================================= */
 
-if (evansBlogClose) {
+if (evansBlogClose && evansBlogModal) {
 
     evansBlogClose.addEventListener(
         "click",
@@ -514,6 +376,7 @@ if (evansBlogClose) {
             evansBlogModal.classList.remove(
                 "show"
             );
+            evansBlogModal.setAttribute("aria-hidden", "true");
 
         }
     );
@@ -535,6 +398,7 @@ if (evansBlogModal) {
                 evansBlogModal.classList.remove(
                     "show"
                 );
+                evansBlogModal.setAttribute("aria-hidden", "true");
 
             }
 
@@ -542,6 +406,13 @@ if (evansBlogModal) {
     );
 
 }
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && evansBlogModal?.classList.contains("show")) {
+        evansBlogModal.classList.remove("show");
+        evansBlogModal.setAttribute("aria-hidden", "true");
+    }
+});
 
 
 /* =================================
@@ -626,4 +497,3 @@ evansBlogTags.forEach((tag) => {
     });
 
 });
-
